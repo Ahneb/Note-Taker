@@ -53,7 +53,6 @@ const deleteNote = (id) =>
 
 const renderActiveNote = () => {
   hide(saveNoteBtn);
-
   if (activeNote.id) {
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
@@ -69,6 +68,7 @@ const renderActiveNote = () => {
 
 const handleNoteSave = () => {
   const newNote = {
+    id: crypto.randomUUID(),
     title: noteTitle.value,
     text: noteText.value,
   };
@@ -88,8 +88,8 @@ const handleNoteDelete = (e) => {
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
-  // console.log(noteId);
-  // console.log(activeNote.id);
+  console.log('this is the noteid ' + noteId);
+  console.log('this is the activenote:' + activeNote);
 
   if (activeNote.id === noteId) {
     activeNote = {};
@@ -106,13 +106,15 @@ const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
-  console.log(activeNote);
+  console.log('this is the handle note view '+ activeNote);
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
+  console.log('this is the new handle note view '+ activeNote);
   renderActiveNote();
+  
 };
 
 const handleRenderSaveBtn = () => {

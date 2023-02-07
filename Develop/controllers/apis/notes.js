@@ -17,8 +17,12 @@ notesRouter.post('/', (req, res) => {
   });
 
 notesRouter.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    let notes = JSON.parse(fs.readFileSync('./develop/db/db.json', 'utf8'));
 
-    console.log(req.params);
+    notes = notes.filter(note => note.id !== id);
+
+    fs.writeFileSync('./develop/db/db.json', JSON.stringify(notes));
     res.end();
   });
 
