@@ -6,6 +6,7 @@ let noteList;
 
 if (window.location.pathname === '/notes') {
   noteTitle = document.querySelector('.note-title');
+  console.log('note title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
   newNoteBtn = document.querySelector('.new-note');
@@ -72,18 +73,23 @@ const handleNoteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
+    // console.log(newNote);
     getAndRenderNotes();
     renderActiveNote();
   });
+  // console.log(newNote);
 };
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
   // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
-
+  
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+
+  // console.log(noteId);
+  // console.log(activeNote.id);
 
   if (activeNote.id === noteId) {
     activeNote = {};
@@ -100,6 +106,7 @@ const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
+  console.log(activeNote);
 };
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
