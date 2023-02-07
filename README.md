@@ -21,9 +21,3 @@ Notes can be saved and deleted:
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
